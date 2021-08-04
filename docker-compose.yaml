@@ -1,0 +1,22 @@
+version: "3.9"
+
+networks:
+  all:
+    external: false
+
+services:
+  sample-admission:
+    image: buildsecurity/sample-admission
+    container_name: sample-admission
+    volumes:
+      - ./cert:/etc/cert
+    command:
+      - -cert
+      - /etc/cert/server.crt
+      - -key
+      - /etc/cert/server.key
+    restart: always
+    ports:
+      - "8000:8000"
+    networks:
+      - all

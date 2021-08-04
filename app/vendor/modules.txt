@@ -1,0 +1,5 @@
+# github.com/gorilla/mux v1.8.0
+## explicit
+github.com/gorilla/mux
+# k8s.io/client-go v0.21.3
+## explicit
