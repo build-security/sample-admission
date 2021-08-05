@@ -6,15 +6,15 @@ networks:
 
 services:
   sample-admission:
-    image: buildsecurity/sample-admission
+    image: build.security/sample-admission
     container_name: sample-admission
-    volumes:
-      - ./cert:/etc/cert
+    # volumes:
+    #   - ./cert:/etc/cert
     command:
       - -cert
-      - /etc/cert/server.crt
+      - server.crt
       - -key
-      - /etc/cert/server.key
+      - server.key
     restart: always
     ports:
       - "8000:8000"
