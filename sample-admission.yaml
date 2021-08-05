@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-admission
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sample-admission
+  template:
+    metadata:
+      labels:
+        app: sample-admission
+    spec:
+      containers:
+      - name: sample-admission
+        imagePullPolicy: Never
+        image: buildsecurity/sample-admission
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8000
+          protocol: TCP
+        args:
+          - -cert
+          - /etc/cert/server.crt
+          - -key 
+          - /etc/cert/server.key
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sample-admission
+spec:
+  selector:
+    app: sample-admission
+  ports:
+  - protocol: TCP
+    port: 443
+    targetPort: 8000
+
+
+
+
+
